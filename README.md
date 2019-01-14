@@ -357,7 +357,7 @@ The following is the software that I have set as default:
 * scroll-reverser
 * slack
 * visual-studio-code
-* xquartz'
+* xquartz
 
 ## NPM Global Modules
 
