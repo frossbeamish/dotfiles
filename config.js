@@ -27,6 +27,7 @@ module.exports = {
     'homebrew/dupes/grep',
     // https://github.com/jkbrzt/httpie
     'httpie',
+    'go',
     // jq is a sort of JSON grep
     'jq',
     // Mac App Store CLI: https://github.com/mas-cli/mas
@@ -35,6 +36,7 @@ module.exports = {
     'moreutils',
     'nmap',
     'openconnect',
+    'python@2',
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
@@ -49,47 +51,27 @@ module.exports = {
     'wget --enable-iri'
   ],
   cask: [
-    //'adium',
-    //'amazon-cloud-drive',
-    //'atom',
-    // 'box-sync',
-    //'comicbooklover',
-    //'diffmerge',
+    'caffeine',
     'docker', // docker for mac
-    //'dropbox',
-    //'evernote',
-    'flux',
     'gpg-suite',
-    //'ireadfast',
+    'intellij-idea',
     'iterm2',
-    'little-snitch',
+    'java8',
     'macbreakz',
-    'micro-snitch',
-    'signal',
-    //'macvim',
-    'sizeup',
-    //'sketchup',
+    'scroll-reverser',
     'slack',
-    'the-unarchiver',
-    //'torbrowser',
-    //'transmission',
     'visual-studio-code',
-    //'vlc',
     'xquartz'
   ],
   gem: [
   ],
   npm: [
-    'antic',
-    'buzzphrase',
     'eslint',
+    'gulp',
     'instant-markdown-d',
-    // 'generator-dockerize',
-    // 'gulp',
     'npm-check-updates',
     'prettyjson',
     'trash',
     'vtop'
-    // ,'yo'
   ]
 };

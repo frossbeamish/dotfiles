@@ -79,3 +79,22 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
 node_modules
+
+############
+# IntelliJ #
+############
+.idea/
+*.iml
+*.ipr
+*.iwl
+*.iws
+
+############
+# Pancakes #
+############
+.gradle/
+build/
+target/
+out/
+classes/
+gae_generated/

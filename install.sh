@@ -441,7 +441,7 @@ sudo chflags uchg /Private/var/vm/sleepimage;ok
 # echo "0x08000100:0" > ~/.CFUserTextEncoding;ok
 
 # running "Stop iTunes from responding to the keyboard media keys"
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null;ok
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null;ok
 
 # running "Show icons for hard drives, servers, and removable media on the desktop"
 # defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -494,12 +494,12 @@ defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
 running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
   defaults write "${domain}" dontAutoLoad -array \
+    "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
     "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
     "/System/Library/CoreServices/Menu Extras/Volume.menu" \
     "/System/Library/CoreServices/Menu Extras/User.menu"
 done;
-defaults write com.apple.systemuiserver menuExtras -array \
-  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+defaults write c menuExtras -array \
   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
   "/System/Library/CoreServices/Menu Extras/Battery.menu" \
   "/System/Library/CoreServices/Menu Extras/Clock.menu"
@@ -588,8 +588,8 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightC
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
 defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true;ok
 
-running "Disable 'natural' (Lion-style) scrolling"
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
+# running "Disable 'natural' (Lion-style) scrolling"
+# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false;ok
 
 running "Increase sound quality for Bluetooth headphones/headsets"
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok
@@ -732,8 +732,8 @@ bot "Dock & Dashboard"
 running "Enable highlight hover effect for the grid view of a stack (Dock)"
 defaults write com.apple.dock mouse-over-hilite-stack -bool true;ok
 
-running "Set the icon size of Dock items to 36 pixels"
-defaults write com.apple.dock tilesize -int 36;ok
+running "Set the icon size of Dock items to 48 pixels"
+defaults write com.apple.dock tilesize -int 48;ok
 
 running "Change minimize/maximize window effect to scale"
 defaults write com.apple.dock mineffect -string "scale";ok
@@ -772,7 +772,7 @@ running "Remove the animation when hiding/showing the Dock"
 defaults write com.apple.dock autohide-time-modifier -float 0;ok
 
 running "Automatically hide and show the Dock"
-defaults write com.apple.dock autohide -bool true;ok
+defaults write com.apple.dock autohide -bool false;ok
 
 running "Make Dock icons of hidden applications translucent"
 defaults write com.apple.dock showhidden -bool true;ok
@@ -782,6 +782,24 @@ defaults write com.apple.dock hide-mirror -bool true;ok
 
 running "Reset Launchpad, but keep the desktop wallpaper intact"
 find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
+
+running "Show Battery Percentage"
+defaults write com.apple.menuextra.battery ShowPercent -string "YES";ok
+
+running "Show Clock Seconds"
+defaults write com.apple.menuextra.clock DateFormat -string "EEE h:mm:ss a";ok
+
+running "Configure Scroll-Reverser"
+defaults write com.pilotmoon.scroll-reverser HasRunBefore -int 1
+defaults write com.pilotmoon.scroll-reverser InvertScrollingOn -int 1
+defaults write com.pilotmoon.scroll-reverser ReverseTablet -int 0
+defaults write com.pilotmoon.scroll-reverser ReverseTrackpad -int 0
+defaults write com.pilotmoon.scroll-reverser ReverseMouse -int 1;ok
+
+running "Configure Caffeine"
+defaults write com.lightheadsw.Caffeine ActivateOnLaunch -int 1
+defaults write com.lightheadsw.Caffeine DefaultDuration -int 0
+defaults write com.lightheadsw.Caffeine SuppressLaunchMessage -int 1;ok
 
 bot "Configuring Hot Corners"
 # Possible values:
@@ -1027,23 +1045,11 @@ running "Disable continuous spell checking"
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false;ok
 
 ###############################################################################
-bot "SizeUp.app"
-###############################################################################
-
-running "Start SizeUp at login"
-defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true;ok
-
-running "Don’t show the preferences window on next start"
-defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false;ok
-
-killall cfprefsd
-
-###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-  "Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
+  "Dock" "Finder" "Mail" "Messages" "Safari" "SystemUIServer" \
   "iCal" "Terminal"; do
   killall "${app}" > /dev/null 2>&1
 done
