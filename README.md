@@ -37,7 +37,6 @@ You don't need to install or configure anything upfront! This works with a brand
   - [Address Book, Dashboard, iCal, TextEdit, and Disk Utility](#address-book-dashboard-ical-textedit-and-disk-utility)
   - [Mac App Store](#mac-app-store)
   - [Messages](#messages)
-  - [SizeUp.app](#sizeupapp)
 - [Software Installation](#software-installation)
   - [Utilities](#utilities)
   - [Apps](#apps)
@@ -311,10 +310,6 @@ The following will only happen if you agree on the prompt
 - Disable smart quotes as it’s annoying for messages that contain code
 - Disable continuous spell checking
 
-## SizeUp.app
-- Start SizeUp at login
-- Don’t show the preferences window on next start
-
 # Software Installation
 
 homebrew, fontconfig, git, ruby (latest), nvm (node + npm), and zsh (latest) are all installed inside the `install.sh` as foundational software for running this project.
@@ -352,18 +347,20 @@ The following is the software that I have set as default:
 * wget --enable-iri
 
 ## Apps
-* box-sync
-* gpgtools
+* caffeine
+* docker
+* gpg-suite
+* intellij-idea
 * iterm2
-* sizeup
+* java8
+* macbreakz
+* scroll-reverser
 * slack
-* the-unarchiver
-* xquartz
+* visual-studio-code
+* xquartz'
 
 ## NPM Global Modules
 
-* antic
-* buzzphrase
 * eslint
 * gulp
 * instant-markdown-d
