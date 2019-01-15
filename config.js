@@ -15,6 +15,7 @@ module.exports = {
     'fzf',
     'readline', // ensure gawk gets good readline
     'gawk',
+    'gdub',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
     'gifsicle',
     'gnupg',
@@ -40,6 +41,7 @@ module.exports = {
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
+    'shpotify',
     'tmux',
     'todo-txt',
     'tree',

@@ -323,6 +323,7 @@ The following is the software that I have set as default:
 * findutils
 * fortune
 * gawk
+* gdub
 * gifsicle
 * gnupg
 * gnu-sed
@@ -337,6 +338,7 @@ The following is the software that I have set as default:
 * openconnect
 * reattach-to-user-namespace
 * homebrew/dupes/screen
+* shpotify
 * tmux
 * tree
 * ttyrec
