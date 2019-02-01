@@ -50,7 +50,8 @@ module.exports = {
     'vim --with-override-system-vi',
     'watch',
     // Install wget with IRI support
-    'wget --enable-iri'
+    'wget --enable-iri',
+    'yarn'
   ],
   cask: [
     'caffeine',
@@ -69,11 +70,13 @@ module.exports = {
   ],
   npm: [
     'eslint',
+    'firebase-tools',
     'gulp',
     'instant-markdown-d',
     'npm-check-updates',
     'prettyjson',
     'trash',
+    'vue',
     'vtop'
   ]
 };

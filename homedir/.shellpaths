@@ -1,3 +1,6 @@
+#Dev Home
+export DEV_HOME=$HOME/dev
+
 #My Scripts
 export PATH=$PATH:.
 #export PATH=$PATH:~/.dotfiles/scripts
@@ -9,8 +12,10 @@ export PATH=/usr/local/bin:$PATH
 #Python
 export PATH="/usr/local/opt/python2/libexec/bin:$PATH"
 
-# GO
-#export PATH=$PATH:/usr/local/opt/go/libexec/bin
+#GO
+export GOPATH=$DEV_HOME/go
+#GO Tools
+export PATH=$PATH:$(go env GOPATH)/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 source "/Users/$(whoami)/google-cloud-sdk/path.zsh.inc"

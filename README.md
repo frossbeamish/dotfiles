@@ -345,6 +345,7 @@ The following is the software that I have set as default:
 * vim --override-system-vi
 * watch
 * wget --enable-iri
+* yarn
 
 ## Apps
 * caffeine
@@ -362,11 +363,13 @@ The following is the software that I have set as default:
 ## NPM Global Modules
 
 * eslint
+* firebase-tools
 * gulp
 * instant-markdown-d
 * npm-check
 * prettyjson
 * trash
+* vue
 * vtop
 
 ## Ruby Gems
