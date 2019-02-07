@@ -49,8 +49,7 @@ module.exports = {
     // better, more recent vim
     'vim --with-override-system-vi',
     'watch',
-    // Install wget with IRI support
-    'wget --enable-iri',
+    'wget',
     'yarn'
   ],
   cask: [

@@ -238,12 +238,12 @@ vim +PluginInstall +qall > /dev/null 2>&1
 bot "installing fonts"
 ./fonts/install.sh
 brew tap caskroom/fonts
-require_cask font-fontawesome
-require_cask font-awesome-terminal-fonts
-require_cask font-hack
-require_cask font-hack-nerd-font
-require_cask font-roboto-mono
-require_cask font-source-code-pro
+require_cask caskroom/fonts/font-fontawesome
+require_cask caskroom/fonts/font-awesome-terminal-fonts
+require_cask caskroom/fonts/font-hack
+require_cask caskroom/fonts/font-hack-nerd-font
+require_cask caskroom/fonts/font-roboto-mono
+require_cask caskroom/fonts/font-source-code-pro
 ok
 
 if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
@@ -503,7 +503,7 @@ defaults write c menuExtras -array \
 ok
 
 running "Set highlight color to green"
-defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600";ok
+defaults write NSGlobalDomain AppleHighlightColor -string "0.752941 0.964706 0.678431";ok
 
 running "Set sidebar icon size to medium"
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2;ok
@@ -942,10 +942,8 @@ bot "Terminal & iTerm2"
 # i.e. hover over a window and start `typing in it without clicking first
 defaults write com.apple.terminal FocusFollowsMouse -bool true
 #defaults write org.x.X11 wm_ffm -bool true;ok
-running "Installing the Solarized Light theme for iTerm (opening file)"
-open "./configs/Solarized Light.itermcolors";ok
-running "Installing the Patched Solarized Dark theme for iTerm (opening file)"
-open "./configs/Solarized Dark Patch.itermcolors";ok
+running "Installing the Liquid Carbon Transparent theme for iTerm (opening file)"
+open "./configs/LiquidCarbonTransparent.itermcolors";ok
 
 running "Don’t display the annoying prompt when quitting iTerm"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
@@ -964,8 +962,8 @@ defaults write com.googlecode.iterm2 HotkeyModifiers -int 262401;
 running "Make iTerm2 load new tabs in the same directory"
 /usr/libexec/PlistBuddy -c "set \"New Bookmarks\":0:\"Custom Directory\" Recycle" ~/Library/Preferences/com.googlecode.iterm2.plist
 running "setting fonts"
-defaults write com.googlecode.iterm2 "Normal Font" -string "Hack-Regular 12";
-defaults write com.googlecode.iterm2 "Non Ascii Font" -string "RobotoMonoForPowerline-Regular 12";
+defaults write com.googlecode.iterm2 "Normal Font" -string "HackNerdFontComplete-Regular 15";
+defaults write com.googlecode.iterm2 "Non Ascii Font" -string "HackNerdFontComplete-Regular 15";
 ok
 running "reading iterm settings"
 defaults read -app iTerm > /dev/null 2>&1;
