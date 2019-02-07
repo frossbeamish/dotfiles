@@ -56,6 +56,7 @@ module.exports = {
   cask: [
     'caffeine',
     'docker', // docker for mac
+    'google-cloud-sdk',
     'gpg-suite',
     'intellij-idea',
     'iterm2',
@@ -63,6 +64,7 @@ module.exports = {
     'macbreakz',
     'scroll-reverser',
     'slack',
+    'spotify',
     'visual-studio-code',
     'xquartz'
   ],
