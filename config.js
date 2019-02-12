@@ -56,11 +56,9 @@ module.exports = {
     'caffeine',
     'docker', // docker for mac
     'google-cloud-sdk',
-    'gpg-suite',
     'intellij-idea',
     'iterm2',
     'java8',
-    'macbreakz',
     'scroll-reverser',
     'slack',
     'spotify',
