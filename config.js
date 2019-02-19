@@ -42,6 +42,7 @@ module.exports = {
     // better/more recent version of screen
     'homebrew/dupes/screen',
     'shpotify',
+    'terraform',
     'tmux',
     'todo-txt',
     'tree',
@@ -64,6 +65,7 @@ module.exports = {
     'scroll-reverser',
     'slack',
     'spotify',
+    'steam',
     'visual-studio-code',
     'xquartz'
   ],
