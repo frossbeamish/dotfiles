@@ -3,8 +3,10 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
+    'ant',
     // alternative to `cat`: https://github.com/sharkdp/bat
     'bat', 
+    'bower',
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
@@ -33,15 +35,18 @@ module.exports = {
     'jq',
     // Mac App Store CLI: https://github.com/mas-cli/mas
     'mas',
+    'maven@3.5',
     // Install some other useful utilities like `sponge`
     'moreutils',
     'nmap',
     'openconnect',
     'python@2',
     'reattach-to-user-namespace',
+    'redis',
     // better/more recent version of screen
     'homebrew/dupes/screen',
     'shpotify',
+    'telnet',
     'terraform',
     'tmux',
     'todo-txt',
