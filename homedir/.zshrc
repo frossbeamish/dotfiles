@@ -63,8 +63,7 @@ zsh_internet_signal(){
   fi
   local SNR=$(bc <<<"scale=2; $signal / $noise")
 
-  #local net=$(curl -LI http://www.example.org -o /dev/null -w '%{http_code}\n' -s)
-  local net=200
+  local net=$(curl -LI http://www.example.org -o /dev/null -w '%{http_code}\n' -s)
   local color='%F{red}'
   local symbol="\uf011"
 
@@ -89,7 +88,7 @@ zsh_internet_signal(){
   fi
 
   # Ethernet Connection (no wifi, hardline)
-  if [[ -z "${signal// }" ]] && [[ "$net" -eq 200 ]] ;
+  if [[ "${signal}" -eq 0 ]] && [[ "$net" -eq 200 ]] ;
     then color='%F{blue}' ; symbol="\uf011" ;
   fi
 
