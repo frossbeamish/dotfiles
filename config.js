@@ -4,6 +4,7 @@ module.exports = {
     'ack',
     'ag',
     'ant',
+    'autojump',
     // alternative to `cat`: https://github.com/sharkdp/bat
     'bat', 
     'bower',
@@ -47,7 +48,7 @@ module.exports = {
     'homebrew/dupes/screen',
     'shpotify',
     'telnet',
-    'terraform',
+    'tfenv',
     'tmux',
     'todo-txt',
     'tree',
@@ -65,16 +66,19 @@ module.exports = {
     'intellij-idea',
     'iterm2',
     'java8',
+    'minikube',
     'scroll-reverser',
     'slack',
     'spotify',
     'steam',
     'visual-studio-code',
+    'virtualbox',
     'xquartz'
   ],
   gem: [
   ],
   npm: [
+    'artillery',
     'eslint',
     'firebase-tools',
     'gulp',
