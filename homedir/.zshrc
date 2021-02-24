@@ -96,15 +96,18 @@ zsh_internet_signal(){
 }
 
 zsh_spotify () {
-  state=`osascript -e 'tell application "Spotify" to player state as string'`;
-  if [ $state = "playing" ]; then
-    symbol="\uF1BC"
-    symbolColor='%F{green}'
-    color='%F{blue}'
-    artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
-    track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
+  running=`ps -ax | grep Spotify.app | wc -l | tr -d ' '`
+  if [ $running -gt 1 ]; then
+    state=`osascript -e 'tell application "Spotify" to player state as string'`;
+    if [ $state = "playing" ]; then
+      symbol="\uF1BC"
+      symbolColor='%F{green}'
+      color='%F{blue}'
+      artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
+      track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
 
-    echo -n "%{$symbolColor%}$symbol %{$color%}$artist - $track";
+      echo -n "%{$symbolColor%}$symbol %{$color%}$artist - $track";
+    fi
   fi
 }
 
@@ -199,3 +202,9 @@ unsetopt correct
 
 # run fortune on new terminal :)
 # fortune
+
+# The next line enables shell command completion for ffsctl.
+if [ $commands[ffsctl] ]; then source <(ffsctl completion zsh); fi
+
+# The next line enables shell command completion for stsctl.
+if [ $commands[stsctl] ]; then source <(stsctl completion zsh); fi

@@ -115,29 +115,6 @@ if [[ $? = 0 ]]; then
   fi
 fi
 
-MD5_NEWWP=$(md5 img/wallpaper.jpg | awk '{print $4}')
-MD5_OLDWP=$(md5 /System/Library/CoreServices/DefaultDesktop.jpg | awk '{print $4}')
-if [[ "$MD5_NEWWP" != "$MD5_OLDWP" ]]; then
-  read -r -p "Do you want to use the project's custom desktop wallpaper? [Y|n] " response
-  if [[ $response =~ ^(no|n|N) ]];then
-    echo "skipping...";
-    ok
-  else
-    running "Set a custom wallpaper image"
-    # `DefaultDesktop.jpg` is already a symlink, and
-    # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-    rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-    sudo rm -f /System/Library/CoreServices/DefaultDesktop.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/El\ Capitan.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra.jpg > /dev/null 2>&1
-    sudo rm -f /Library/Desktop\ Pictures/Sierra\ 2.jpg > /dev/null 2>&1
-    sudo cp ./img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/Sierra\ 2.jpg;
-    sudo cp ./img/wallpaper.jpg /Library/Desktop\ Pictures/El\ Capitan.jpg;ok
-  fi
-fi
-
 #####
 # install homebrew (CLI Packages)
 #####
@@ -325,7 +302,7 @@ sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
 #launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
 
 # Disable IR remote control
-#sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
+sudo defaults write /Library/Preferences/com.apple.driver.AppleIRController DeviceEnabled -bool false
 
 # Turn Bluetooth off completely
 #sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
@@ -352,10 +329,10 @@ sudo systemsetup -setwakeonnetworkaccess off
 # sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.smbd.plist
 
 # Display login window as name and password
-#sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
+sudo defaults write /Library/Preferences/com.apple.loginwindow SHOWFULLNAME -bool true
 
 # Do not show password hints
-#sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
+sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
 
 # Disable guest account login
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
@@ -410,8 +387,8 @@ sudo touch /Private/var/vm/sleepimage;ok
 running "…and make sure it can’t be rewritten"
 sudo chflags uchg /Private/var/vm/sleepimage;ok
 
-#running "Disable the sudden motion sensor as it’s not useful for SSDs"
-# sudo pmset -a sms 0;ok
+running "Disable the sudden motion sensor as it’s not useful for SSDs"
+sudo pmset -a sms 0;ok
 
 ################################################
 # Optional / Experimental                      #
@@ -474,7 +451,7 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/nul
 bot "Standard System Changes"
 ################################################
 running "always boot in verbose mode (not MacOS GUI mode)"
-sudo nvram boot-args="-v";ok
+sudo nvram boot-args="";ok
 
 running "allow 'locate' command"
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist > /dev/null 2>&1;ok
@@ -491,10 +468,7 @@ defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
 running "Menu bar: hide the Time Machine, Volume, User, and Bluetooth icons"
 for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
   defaults write "${domain}" dontAutoLoad -array \
-    "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
-    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-    "/System/Library/CoreServices/Menu Extras/Volume.menu" \
-    "/System/Library/CoreServices/Menu Extras/User.menu"
+    "/System/Library/CoreServices/Menu Extras/TimeMachine.menu"
 done;
 defaults write c menuExtras -array \
   "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
@@ -537,7 +511,7 @@ running "Remove duplicates in the “Open With” menu (also see 'lscleanup' ali
 
 running "Display ASCII control characters using caret notation in standard text views"
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
-defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true;ok
+defaults write NSGlobalDomain NSTextShowsControlCharacters -bool false;ok
 
 running "Disable automatic termination of inactive apps"
 defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true;ok
@@ -610,7 +584,7 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10;ok
 running "Set language and text formats (english/US)"
 defaults write NSGlobalDomain AppleLanguages -array "en"
 defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
 defaults write NSGlobalDomain AppleMetricUnits -bool true;ok
 
 running "Disable auto-correct"
@@ -656,10 +630,10 @@ running "Set Desktop as the default location for new Finder windows"
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/";ok
 
-running "Show hidden files by default"
-defaults write com.apple.finder AppleShowAllFiles -bool true;ok
+running "Don't show hidden files by default"
+defaults write com.apple.finder AppleShowAllFiles -bool false;ok
 
-running "Show all filename extensions"
+running "Don't show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool false;ok
 
 running "Show status bar"
@@ -793,10 +767,10 @@ defaults write com.pilotmoon.scroll-reverser ReverseTablet -int 0
 defaults write com.pilotmoon.scroll-reverser ReverseTrackpad -int 0
 defaults write com.pilotmoon.scroll-reverser ReverseMouse -int 1;ok
 
-running "Configure Caffeine"
-defaults write com.lightheadsw.Caffeine ActivateOnLaunch -int 1
-defaults write com.lightheadsw.Caffeine DefaultDuration -int 0
-defaults write com.lightheadsw.Caffeine SuppressLaunchMessage -int 1;ok
+#running "Configure Caffeine"
+#defaults write com.lightheadsw.Caffeine ActivateOnLaunch -int 1
+#defaults write com.lightheadsw.Caffeine DefaultDuration -int 0
+#defaults write com.lightheadsw.Caffeine SuppressLaunchMessage -int 1;ok
 
 bot "Configuring Hot Corners"
 # Possible values:
@@ -863,7 +837,6 @@ defaults write NSGlobalDomain WebKitDeveloperExtras -bool true;ok
 ###############################################################################
 bot "Configuring Mail"
 ###############################################################################
-
 
 running "Disable send and reply animations in Mail.app"
 defaults write com.apple.mail DisableReplyAnimations -bool true
@@ -1008,6 +981,7 @@ defaults write com.apple.dashboard devmode -bool true;ok
 
 running "Use plain text mode for new TextEdit documents"
 defaults write com.apple.TextEdit RichText -int 0;ok
+
 running "Open and save files as UTF-8 in TextEdit"
 defaults write com.apple.TextEdit PlainTextEncoding -int 4
 defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4;ok

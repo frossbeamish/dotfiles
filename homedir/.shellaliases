@@ -103,11 +103,3 @@ alias tdd="todo.sh do"
 
 # Airport
 alias airport="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport"
-
-# Keap SRE
-# Adding gssh alias
-alias gssh='ssh rossb_infusionsoft_com@35.185.237.216 -i ~/.ssh/google_compute_engine'
-
-# Adding easy tunnel options
-alias tunneldown="/bin/ps -eafww | grep 'rossb_infusionsoft_com@35.185.237.216 -D 9000 -f -C -q -N' | grep -v grep | cut -d' ' -f3 | xargs kill && networksetup -setsocksfirewallproxystate 'Wi-Fi' Off"
-alias tunnelup='ssh rossb_infusionsoft_com@35.185.237.216 -i ~/.ssh/google_compute_engine -D 9000 -f -C -q -N && networksetup -setsocksfirewallproxy "Wi-Fi" localhost 9000'

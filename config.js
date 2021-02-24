@@ -27,6 +27,7 @@ module.exports = {
     'gnu-sed --with-default-names',
     // upgrade grep so we can get things like inverted match (-v)
     'grep --with-default-names',
+    'helm',
     // better, more recent grep
     'homebrew/dupes/grep',
     // https://github.com/jkbrzt/httpie
@@ -48,6 +49,7 @@ module.exports = {
     'homebrew/dupes/screen',
     'shpotify',
     'telnet',
+    'terraform-docs',
     'tfenv',
     'tmux',
     'todo-txt',
@@ -79,6 +81,7 @@ module.exports = {
   ],
   npm: [
     'artillery',
+    'cloc',
     'eslint',
     'firebase-tools',
     'gulp',
