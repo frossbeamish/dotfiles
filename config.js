@@ -3,10 +3,12 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
+    'ant',
     // https://github.com/wting/autojump
     'autojump',
     // alternative to `cat`: https://github.com/sharkdp/bat
     'bat',
+    'bower',
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
@@ -17,6 +19,7 @@ module.exports = {
     'fzf',
     'readline', // ensure gawk gets good readline
     'gawk',
+    'gdub',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
     'gifsicle',
     'gnupg',
@@ -25,21 +28,31 @@ module.exports = {
     'gnu-sed --with-default-names',
     // upgrade grep so we can get things like inverted match (-v)
     'grep --with-default-names',
+    'helm',
     // better, more recent grep
     'homebrew/dupes/grep',
     // https://github.com/jkbrzt/httpie
     'httpie',
+    'go',
     // jq is a sort of JSON grep
     'jq',
     // Mac App Store CLI: https://github.com/mas-cli/mas
     'mas',
+    'maven@3.5',
     // Install some other useful utilities like `sponge`
     'moreutils',
     'nmap',
-    // 'openconnect',
+    'openconnect',
+    'python@2',
     'reattach-to-user-namespace',
+    'redis',
     // better/more recent version of screen
     'homebrew/dupes/screen',
+    'stern',
+    'shpotify',
+    'telnet',
+    'terraform-docs',
+    'tfenv',
     'tmux',
     'todo-txt',
     'tree',
@@ -47,52 +60,44 @@ module.exports = {
     // better, more recent vim
     'vim --with-client-server --with-override-system-vi',
     'watch',
-    // Install wget with IRI support
-    'wget --enable-iri'
+    'wget',
+    'yarn'
   ],
   cask: [
-    //'adium',
-    //'amazon-cloud-drive',
-    //'atom',
-    // 'box-sync',
-    //'comicbooklover',
-    //'diffmerge',
+    'caffeine',
     'docker', // docker for mac
-    //'dropbox',
-    //'evernote',
-    'flux',
-    'gpg-suite',
-    //'ireadfast',
+    'google-cloud-sdk',
+    'intellij-idea',
     'iterm2',
+    'java8',
+    'minikube',
+    'scroll-reverser',
     'little-snitch',
-    // 'macbreakz',
     'micro-snitch',
-    // 'signal',
-    //'macvim',
     'sizeup',
     //'sketchup',
     'slack',
-    // 'the-unarchiver',
-    //'torbrowser',
-    //'transmission',
+    'spotify',
+    'steam',
+    'the-unarchiver',
     'visual-studio-code',
-    //'vlc',
+    'virtualbox',
     'xquartz'
   ],
   gem: [
   ],
   npm: [
-    'antic',
-    'buzzphrase',
+    'artillery',
+    'cloc',
     'eslint',
+    'firebase-tools',
+    'gulp',
     'instant-markdown-d',
-    // 'generator-dockerize',
-    // 'gulp',
     'npm-check-updates',
     'prettyjson',
     'trash',
+    'vue',
     'vtop'
-    // ,'yo'
   ],
   mas: [
     //com.apple.dt.Xcode (10.2.1)
@@ -106,4 +111,5 @@ module.exports = {
     //com.app77.pwsafemac (4.17)
     //'520993579',
   ],
+  ]
 };

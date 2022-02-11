@@ -1,9 +1,9 @@
 [user]
-  name = GITHUBFULLNAME
-  email = GITHUBEMAIL
+  name = Ross Beamish
+  email = 6519237+frossbeamish@users.noreply.github.com
 [github]
   # https://github.com/blog/180-local-github-config
-  user = GITHUBUSER
+  user = frossbeamish
 [color]
 # ui = true is a superset of all the more specific color options
 #  as documented at http://book.git-scm.com/5_customizing_git.html
@@ -41,7 +41,7 @@
   quotepath = false
   # line endings
   # force LF during add
-  autocrlf = input
+	autocrlf = false
   # autocrlf = true # for windows to convert to CRLF on checkout and LF on add
   # warn but allow line ending conversion to proceed
   safecrlf = warn
@@ -187,7 +187,7 @@
 
 [push]
   default = matching
-	followTags = true
+  followTags = true
 
 [filter "media"]
   required = true
