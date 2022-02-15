@@ -19,7 +19,7 @@ module.exports = {
     'fzf',
     'readline', // ensure gawk gets good readline
     'gawk',
-    'gdub',
+    'gng',
     // http://www.lcdf.org/gifsicle/ (because I'm a gif junky)
     'gifsicle',
     'gnupg',
