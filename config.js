@@ -111,5 +111,4 @@ module.exports = {
     //com.app77.pwsafemac (4.17)
     //'520993579',
   ],
-  ]
 };
