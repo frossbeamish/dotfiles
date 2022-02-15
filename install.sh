@@ -214,6 +214,8 @@ fi
 mkdir -p ~/Library/Caches/Homebrew/Formula
 brew doctor
 
+brew tap gdubw/gng
+
 # skip those GUI clients, git command-line all the way
 require_brew git
 # update zsh to latest
