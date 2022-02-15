@@ -1,6 +1,6 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.dotfiles/oh-my-zsh
-export ZSH_THEME="powerlevel9k/powerlevel9k"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # colorcode test
 # for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
@@ -54,7 +54,7 @@ zsh_battery_level() {
 }
 
 zsh_internet_signal(){
-  local airportOut=$(airport -I | tr -d '\n')
+  local airportOut=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | tr -d '\n')
   local signal=0
   local noise=1
   if [[ ! $airportOut =~ .*Off* ]]; then

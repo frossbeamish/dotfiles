@@ -303,37 +303,37 @@ vnoremap <silent> <leader>es :EsformatterVisual<CR>
 " netrw (default installed alt for NERDTree)
 " more info: https://shapeshed.com/vim-netrw/
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3 " tre style directory listing
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3 " tre style directory listing
 "let g:netrw_browse_split = 2 " open files in new vertical split
-let g:netrw_browse_split = 4 " open file in previous window
-let g:netrw_altv = 1
-let g:netrw_winsize = 25 " width of dir explorer
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
+"let g:netrw_browse_split = 4 " open file in previous window
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25 " width of dir explorer
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+"augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-let g:syntastic_html_tidy_quiet_messages = { "level": "warnings" }
-let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!' ]
+"let g:syntastic_html_tidy_quiet_messages = { "level": "warnings" }
+"let g:syntastic_html_tidy_ignore_errors = [ '<template> is not recognized!' ]
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_eslint_checker = 1
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_enable_tslint_checker = 1
+"let g:syntastic_enable_eslint_checker = 1
+"let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_enable_tslint_checker = 1
 "let g:syntastic_typescript_checkers = ['tslint', 'tsc']
-let g:syntastic_enable_pug_checker = 1
-let g:syntastic_pug_checkers = ['jade','pug']
+"let g:syntastic_enable_pug_checker = 1
+"let g:syntastic_pug_checkers = ['jade','pug']
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Other
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
