@@ -101,7 +101,7 @@ module.exports = {
   ],
   mas: [
     //com.apple.dt.Xcode (10.2.1)
-    '497799835',
+    //'497799835',
     //com.if.Amphetamine (4.1.6)
     //'937984704',
     //net.shinyfrog.bear (1.6.15)
