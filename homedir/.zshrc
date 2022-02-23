@@ -189,7 +189,7 @@ load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
     nvm use &> /dev/null
   else
-    nvm use stable
+    nvm use stable &> /dev/null
   fi
 }
 add-zsh-hook chpwd load-nvmrc
