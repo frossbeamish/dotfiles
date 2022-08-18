@@ -199,4 +199,6 @@
   smudge = git-lfs smudge %f
   required = true
 [pull]
-	rebase = true
+  rebase = true
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/

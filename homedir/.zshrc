@@ -182,7 +182,7 @@ plugins=(colorize compleat dirpersist autojump git gulp history cp)
 
 source $ZSH/oh-my-zsh.sh
 
-source /usr/local/opt/nvm/nvm.sh --no-use
+source /opt/homebrew/opt/nvm/nvm.sh --no-use
 
 autoload -U add-zsh-hook
 load-nvmrc() {
@@ -206,3 +206,6 @@ if [ $commands[ffsctl] ]; then source <(ffsctl completion zsh); fi
 
 # The next line enables shell command completion for stsctl.
 if [ $commands[stsctl] ]; then source <(stsctl completion zsh); fi
+
+# he next line enables shell command completion for kubectl
+source <(kubectl completion zsh)

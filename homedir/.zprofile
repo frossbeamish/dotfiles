@@ -23,3 +23,4 @@ function precmd () {
 }
 
 export PROMPT_EOL_MARK=''
+eval "$(/opt/homebrew/bin/brew shellenv)"

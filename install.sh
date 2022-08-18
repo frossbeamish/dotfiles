@@ -188,7 +188,7 @@ running "checking homebrew..."
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
   action "installing homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
   if [[ $? != 0 ]]; then
     error "unable to install homebrew, script $0 abort!"
     exit 2
@@ -226,17 +226,22 @@ RUBY_CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl` --with-readline-
 require_brew ruby
 # set zsh as the user login shell
 CURRENTSHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
-if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
-  bot "setting newer homebrew zsh (/usr/local/bin/zsh) as your shell (password required)"
-  # sudo bash -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-  # chsh -s /usr/local/bin/zsh
-  sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
+if [[ "$CURRENTSHELL" != "/opt/homebrew/bin/zsh" ]]; then
+  bot "setting newer homebrew zsh (/opt/homebrew/bin/zsh) as your shell (password required)"
+  # sudo bash -c 'echo "/opt/homebrew/bin/zsh" >> /etc/shells'
+  # chsh -s /opt/homebrew/bin/zsh
+  sudo dscl . -change /Users/$USER UserShell $SHELL /opt/homebrew/bin/zsh > /dev/null 2>&1
   ok
 fi
 
 if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
 fi
+
+if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel10k" ]]; then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git oh-my-zsh/themes/powerlevel10k
+fi
+
 
 bot "Dotfiles Setup"
 read -r -p "symlink ./homedir/* files in ~/ (these are the dotfiles)? [y|N] " response
@@ -325,6 +330,7 @@ ok
 
 bot "installing packages from config.js..."
 node index.js
+gu install native-image
 ok
 
 running "cleanup homebrew"

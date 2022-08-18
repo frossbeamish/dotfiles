@@ -12,6 +12,7 @@ module.exports = {
     // Install GNU core utilities (those that come with macOS are outdated)
     // Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
     'coreutils',
+    'derailed/k9s/k9s',
     'dos2unix',
     // Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed
     'findutils',
@@ -36,6 +37,7 @@ module.exports = {
     'go',
     // jq is a sort of JSON grep
     'jq',
+    'kubernetes',
     // Mac App Store CLI: https://github.com/mas-cli/mas
     'mas',
     'maven@3.5',
@@ -67,6 +69,7 @@ module.exports = {
     'caffeine',
     'docker', // docker for mac
     'google-cloud-sdk',
+    'graalvm/tap/graalvm-ce-java17',
     'intellij-idea',
     'iterm2',
     'java8',
