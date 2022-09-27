@@ -2,6 +2,8 @@
 export EDITOR="vim"
 bindkey -v
 
+export DATA_REPO=~/data
+
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################

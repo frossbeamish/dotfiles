@@ -1,9 +1,10 @@
 [user]
   name = Ross Beamish
-  email = 6519237+frossbeamish@users.noreply.github.com
+  email = rbeamish@hioscar.com
 [github]
   # https://github.com/blog/180-local-github-config
   user = frossbeamish
+  email = 6519237+frossbeamish@users.noreply.github.com
 [color]
 # ui = true is a superset of all the more specific color options
 #  as documented at http://book.git-scm.com/5_customizing_git.html
@@ -41,13 +42,14 @@
   quotepath = false
   # line endings
   # force LF during add
-	autocrlf = false
+  autocrlf = false
   # autocrlf = true # for windows to convert to CRLF on checkout and LF on add
   # warn but allow line ending conversion to proceed
   safecrlf = warn
   # prevent crlf (then you will have to deal with the problem -- dos2unix, etc)
   #safecrlf = true
   editor = vim
+	compression = 0
   #editor = subl -w
 
 [alias]
@@ -202,3 +204,7 @@
   rebase = true
 [url "ssh://git@github.com/"]
   insteadOf = https://github.com/
+[https]
+	postBuffer = 524288000
+[http]
+	maxRequestBuffer = 100M

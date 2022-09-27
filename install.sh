@@ -557,7 +557,7 @@ launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/nul
 bot "Standard System Changes"
 ################################################
 #running "always boot in verbose mode (not MacOS GUI mode)"
-#sudo nvram boot-args="";ok
+sudo nvram boot-args="";ok
 
 running "allow 'locate' command"
 sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist > /dev/null 2>&1;ok

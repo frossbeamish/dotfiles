@@ -46,7 +46,7 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'godlygeek/tabular'
 " language tools
 Plugin 'scrooloose/syntastic'
-Plugin 'millermedeiros/vim-esformatter'
+" Plugin 'millermedeiros/vim-esformatter'
 Plugin 'digitaltoad/vim-pug'
 " Plugin 'elzr/vim-json'
 " Plugin 'SirVer/ultisnips'
@@ -137,7 +137,7 @@ set lz " do not redraw while running macros (much faster) (LazyRedraw)
 set hid " you can change buffer without saving
 set backspace=2 " make backspace work normal
 set whichwrap+=<,>,h,l  " backspace and cursor keys wrap to
-set mouse=a " use mouse everywhere
+set mouse=r " use mouse everywhere
 set shortmess=atI " shortens messages to avoid 'press a key' prompt
 set report=0 " tell us when anything is changed via :...
 set noerrorbells " don't make noise

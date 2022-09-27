@@ -3,6 +3,7 @@ module.exports = {
     // http://conqueringthecommandline.com/book/ack_ag
     'ack',
     'ag',
+    'autojump',
     // 'ant',
     // alternative to `cat`: https://github.com/sharkdp/bat
     'bat',

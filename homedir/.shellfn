@@ -1,3 +1,15 @@
+get-hioscar-eks-nonproduction-creds () {
+  local data_repo=""
+  data_repo=${DATA_REPO:-}
+  [[ -d "$data_repo" ]] || (
+    echo 'DATA_REPO environment variable unset'
+    exit 1
+  ) || return
+  eval "$(TTL=4h LDAP_GROUP=engineering_techops_sre_staff AWS_ACCOUNT=hioscar-eks-nonproduction $data_repo/scripts/aws_creds)"
+  env | grep AWS | sed 's/^/export /g' > ~/infracreds
+  aws eks --region us-east-1 update-kubeconfig --name eks-oscar-1
+}
+
 #########################################
 # Utility Functions
 

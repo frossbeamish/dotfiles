@@ -1,6 +1,3 @@
-#Dev Home
-export DEV_HOME=$HOME/dev
-
 #My Scripts
 export PATH=$PATH:.
 
@@ -9,26 +6,5 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 
-#Python
-export PATH="/usr/local/opt/python2/libexec/bin:$PATH"
-
-#GO
-export GOPATH=$DEV_HOME/go
 #GO Tools
 export PATH=$PATH:$(go env GOPATH)/bin
-
-#MAVEN
-export MAVEN_HOME=/opt/homebrew/Cellar/maven@3.5/3.5.4_1/bin
-export PATH=$PATH:$MAVEN_HOME
-
-#GraalVM
-export GRAALVM_HOME=/Library/Java/JavaVirtualMachines/graalvm-ce-java17-22.1.0-dev/Contents/Home
-export PATH=$PATH:$GRAALVM_HOME/bin
-
-export JAVA_HOME=$GRAALVM_HOME
-
-# The next line updates PATH for the Google Cloud SDK.
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-
-# The next line enables shell command completion for gcloud.
-source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
