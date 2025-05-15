@@ -166,6 +166,7 @@
 
 [init]
   templatedir = ~/.dotfiles/.git_template
+	defaultBranch = main
 
 [merge]
     tool = vscode

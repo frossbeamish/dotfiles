@@ -54,61 +54,21 @@ zsh_battery_level() {
 }
 
 zsh_internet_signal(){
-  local airportOut=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | tr -d '\n')
-  local signal=0
-  local noise=1
-  if [[ ! $airportOut =~ .*Off* ]]; then
-    signal=$(echo "$airportOut" | grep agrCtlRSSI | awk '{print $2}' | sed 's/-//g')
-    noise=$(echo "$airportOut" | grep agrCtlNoise | awk '{print $2}' | sed 's/-//g')
-  fi
-  local SNR=$(bc <<<"scale=2; $signal / $noise")
-
+  local wifiStatus=`networksetup -getairportpower $(networksetup -listallhardwareports | awk -F: '/Wi-Fi/{getline; print $2;}') | awk '{ print $4 }'`
   local net=$(curl -LI http://www.example.org -o /dev/null -w '%{http_code}\n' -s)
   local color='%F{red}'
-  local symbol="\uf011"
+  local symbol="\uf1eb"
 
-  # Excellent Signal (5 bars)
-  if [[ ! -z "${signal// }" ]] && [[ $SNR -gt .40 ]] ;
+  if [[ "${wifiStatus}" = "On" ]] ;
     then color='%F{blue}' ; symbol="\uf1eb" ;
   fi
 
-  # Good Signal (3-4 bars)
-  if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .40 ]] && [[ $SNR -gt .25 ]] ;
-    then color='%F{green}' ; symbol="\uf1eb" ;
-  fi
-
-  # Low Signal (2 bars)
-  if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .25 ]] && [[ $SNR -gt .15 ]] ;
-    then color='%F{yellow}' ; symbol="\uf1eb" ;
-  fi
-
-  # Very Low Signal (1 bar)
-  if [[ ! -z "${signal// }" ]] && [[ ! $SNR -gt .15 ]] && [[ $SNR -gt .10 ]] ;
-    then color='%F{red}' ; symbol="\uf1eb" ;
-  fi
-
   # Ethernet Connection (no wifi, hardline)
-  if [[ "${signal}" -eq 0 ]] && [[ "$net" -eq 200 ]] ;
+  if [[ "${wifiStatus}" = "Off" ]] && [[ "$net" -eq 200 ]] ;
     then color='%F{blue}' ; symbol="\uf011" ;
   fi
 
   echo -n "%{$color%}$symbol "
-}
-
-zsh_spotify () {
-  running=`ps -ax | grep Spotify.app | wc -l | tr -d ' '`
-  if [ $running -gt 1 ]; then
-    state=`osascript -e 'tell application "Spotify" to player state as string'`;
-    if [ $state = "playing" ]; then
-      symbol="\uF1BC"
-      symbolColor='%F{green}'
-      color='%F{blue}'
-      artist=`osascript -e 'tell application "Spotify" to artist of current track as string'`;
-      track=`osascript -e 'tell application "Spotify" to name of current track as string'`;
-
-      echo -n "%{$symbolColor%}$symbol %{$color%}$artist - $track";
-    fi
-  fi
 }
 
 POWERLEVEL9K_MODE='nerdfont-complete'
@@ -147,11 +107,6 @@ POWERLEVEL9K_STATUS_OK=false
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_STATUS_BACKGROUND="238"
 
-# Spotify
-POWERLEVEL9K_CUSTOM_SPOTIFY="zsh_spotify"
-POWERLEVEL9K_CUSTOM_SPOTIFY_BACKGROUND="238"
-POWERLEVEL9K_CUSTOM_SPOTIFY_FOREGROUND="253"
-
 # Internet
 POWERLEVEL9K_CUSTOM_INTERNET_SIGNAL="zsh_internet_signal"
 POWERLEVEL9K_CUSTOM_INTERNET_SIGNAL_BACKGROUND="238"
@@ -162,7 +117,7 @@ POWERLEVEL9K_CUSTOM_BATTERY_STATUS="zsh_battery_level"
 POWERLEVEL9K_CUSTOM_BATTERY_STATUS_BACKGROUND="238"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time ssh root_indicator dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time custom_spotify custom_internet_signal custom_battery_status_joined)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status command_execution_time custom_internet_signal custom_battery_status_joined)
 
 # Set to this to use case-sensitive completion
 export CASE_SENSITIVE="true"
@@ -178,22 +133,22 @@ export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.dotfiles/oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(colorize compleat dirpersist autojump git gulp history cp)
+plugins=(colorize dirpersist autojump git gulp history cp)
 
 source $ZSH/oh-my-zsh.sh
 
 source /opt/homebrew/opt/nvm/nvm.sh --no-use
 
-autoload -U add-zsh-hook
-load-nvmrc() {
-  if [[ -f .nvmrc && -r .nvmrc ]]; then
-    nvm use &> /dev/null
-  else
-    nvm use stable &> /dev/null
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#autoload -U add-zsh-hook
+#load-nvmrc() {
+#  if [[ -f .nvmrc && -r .nvmrc ]]; then
+#    nvm use &> /dev/null
+#  else
+#    nvm use stable &> /dev/null
+#  fi
+#}
+#add-zsh-hook chpwd load-nvmrc
+#load-nvmrc
 
 # Customize to your needs...
 unsetopt correct
@@ -201,11 +156,8 @@ unsetopt correct
 # run fortune on new terminal :)
 # fortune
 
-# The next line enables shell command completion for ffsctl.
-if [ $commands[ffsctl] ]; then source <(ffsctl completion zsh); fi
-
-# The next line enables shell command completion for stsctl.
-if [ $commands[stsctl] ]; then source <(stsctl completion zsh); fi
-
-# he next line enables shell command completion for kubectl
+# The next line enables shell command completion for kubectl
 source <(kubectl completion zsh)
+source <(ep completion zsh)
+eval "$(pyenv init -)"
+export TFENV_ARCH=arm64
